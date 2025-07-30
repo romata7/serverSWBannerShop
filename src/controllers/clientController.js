@@ -29,4 +29,14 @@ exports.updateClient = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+};
+
+exports.deleteClient = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const [result] = await db.query('DELETE FROM clients WHERE id = ?', [id]);
+        res.status(204).end();
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 }
